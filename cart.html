@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<title>This is Cart </title>
+
+</head>
+<body>
+    <div class="container">
+        <h4 class="text-center m3">Cart Items</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sl No.</th>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Item-1</td>
+                    <td><input type="number" name="qty1" id="qty1" value="1" onchange="calculateAmount(this.value,1)"></td>
+                    <td><input type="text" name="price1" id="price1" value="58" disabled></td>
+                    <td><input type="text" name="amount1" id="amount1" value="58" disabled></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Item-2</td>
+                    <td><input type="number" name="qty2" id="qty2" value="1" onchange="calculateAmount(this.value,2)"></td>
+                    <td><input type="text" name="price2" id="price2" value="70" disabled></td>
+                    <td><input type="text" name="amount2" id="amount2" value="70" disabled></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Item-3</td>
+                    <td><input type="number" name="qty3" id="qty3" value="1" onchange="calculateAmount(this.value,3)"></td>
+                    <td><input type="text" name="price3" id="price3" value="40" disabled></td>
+                    <td><input type="text" name="amount3" id="amount3" value="40" disabled></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                    <td><p id="tot"></p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        
+    function calculateAmount(qty, id){
+        if(qty>0){
+            var price=document.getElementById('price'+id).value;
+            var amount=qty*price;
+            document.getElementById('amount'+id).setAttribute('value',amount);
+            calculateTotal();
+        }else{
+            document.getElementById('qty'+id).value="1";
+            alert('Quantity could not be 0');
+        }
+    }
+    function calculateTotal(){
+        var total=0;
+        for(var i=1;i<=3; i++){
+            total+=parseInt(document.getElementById('amount'+i).value);
+            document.getElementById('tot').innerHTML=total;
+        }
+    }
+    calculateTotal();
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
